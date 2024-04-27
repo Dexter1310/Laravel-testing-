@@ -27,7 +27,6 @@
                     {{ __("Edit product") }}
                     @if($product)
 
-
                         <form action="/product-update" method="POST" enctype="multipart/form-data">
                             @csrf @method('PUT')
                             <div class="form-group">
@@ -46,6 +45,7 @@
                                         <th>{{__('Image')}}</th>
                                         <th>{{__('Title image')}}</th>
                                         <th>{{__('Options')}}</th>
+                                        <th>{{__('Feature')}}</th>
                                         </thead>
                                         <tbody>
                                         @foreach($product as $image)
@@ -59,24 +59,22 @@
                                                     </td>
                                                     <td>
                                                     <button class="btn btn-danger btn-sm delete-image-product" type="button" data-token="{{ csrf_token() }}" data-image="{{$image->image_id}}">{{__('Delete')}}</button>
+                                                    </td>
+                                                    <td>
 
+                                                        <input type="radio" name="feature" data-checked="{{$image->image_id}}" data-product="{{$image->id}}" @if($image->featured)checked @endif >
                                                     </td>
                                                 </tr>
-
                                             @endif
                                         @endforeach
                                         </tbody>
                                     </table>
-
-
                                 </div>
-
                                 <button type="submit" class="btn btn-dark mt-2">{{__('Update Product')}}</button>
                             </div>
                         </form>
 
                     @endif
-
                 </div>
             </div>
         </div>

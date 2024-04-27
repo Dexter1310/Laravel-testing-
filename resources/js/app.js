@@ -85,6 +85,31 @@ $(document).ready(function () {
         }
 
     })
+    $("input[type='radio'][name='feature']").change(function(){
+
+        var selected = $(this).data('checked');
+        var idProduct = $(this).data('product');
+
+        $.ajax({
+            url: '/image-feature/',
+            type: 'GET',
+            data: {
+                "id": selected,
+                "id_product": idProduct
+            },
+            then: function (response) {
+                console.log('feature');
+
+            },
+            error: function (xhr) {
+
+                console.log(xhr.responseText);
+            }
+        });
+
+    });
+
+
 
 
 })

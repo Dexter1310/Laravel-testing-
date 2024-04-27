@@ -73,13 +73,12 @@
 
                     </thead>
                     <tbody>
-                    {{--                    @dump($products);--}}
+
                     @foreach ($products->unique(function ($element){ return $element->id;}) as $product)
-
                         <tr>
-
                             <td>{{ $product->name }}</td>
                             <td>{{ $product->description }}</td>
+
                             @if($product->image_path != null)
                                 <td><a href="{{url('storage/'.$product->image_path)}}" target="_blank">
                                         <img src="{{url('storage/'.$product->image_path)}}"

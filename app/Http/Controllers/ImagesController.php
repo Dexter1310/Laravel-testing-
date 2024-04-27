@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Images;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class ImagesController extends Controller
@@ -23,6 +24,26 @@ class ImagesController extends Controller
     public function create()
     {
         //
+    }
+
+    public function feature(Request $request)
+    {
+        $id=intval($request->get('id'));
+        $idProduct=intval($request->get('id_product'));
+        $images= DB::table('images')->where('imageable_id',$idProduct)->get();
+        foreach ($images as $image) {
+
+
+//            if($image->featured) {
+//                $value = false;
+//            }
+            $value= $image->id===$id;
+//            if($image->id==$id) {
+//                $value=true;
+//            }
+            DB::table('images')->where('id', $image->id)->update(['featured' => $value]);
+        }
+
     }
 
     /**

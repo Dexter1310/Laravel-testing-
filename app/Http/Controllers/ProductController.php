@@ -16,12 +16,12 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $products = DB::table('products')
-            ->select('products.*', 'users.name as user_name','images.name as image_name','images.path as image_path' )
+            ->select('products.*', 'users.name as user_name','images.name as image_name','images.path as image_path','images.featured as feature' )
             ->leftJoin('images', 'images.imageable_id', '=', 'products.id')
+            ->where('featured', 1)
             ->join('users', 'users.id', '=', 'products.user_id')
             ->orderBy('products.created_at', 'asc')
             ->paginate(2);
-
 
         return view('products.index', ['products' => $products]);
     }
@@ -100,7 +100,7 @@ class ProductController extends Controller
     {
 
         $product = DB::table('products')
-            ->select('products.*', 'images.name as image_name','images.path as image_path','images.id as image_id' )
+            ->select('products.*', 'images.name as image_name','images.path as image_path','images.id as image_id','images.featured as featured' )
             ->leftjoin('images', 'images.imageable_id', '=', 'products.id')
             ->where('products.id', $id)->get();
 

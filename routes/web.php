@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/image-delete',[ImagesController::class,'destroy'])->name('image.destroy');
     Route::put('/image-update',[ImagesController::class,'update'])->name('image.update');
+    Route::get('/image-feature',[ImagesController::class,'feature'])->name('image.feature');
 
 
     Route::get('/dashboard', function () {

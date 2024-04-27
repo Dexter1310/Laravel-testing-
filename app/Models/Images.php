@@ -12,7 +12,8 @@ class Images extends Model
         'name',
         'path',
         'imageable_type',
-        'imageable_id'
+        'imageable_id',
+        'featured'
 
     ];
 
