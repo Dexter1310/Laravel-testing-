@@ -56,6 +56,7 @@ class ImagesController extends Controller
                 'path' => $namePath,
                 'imageable_type'=>Product::class,
                 'imageable_id' => $product->id,
+                'featured' => true
             ]);
 
             Images::create($validateImages);
