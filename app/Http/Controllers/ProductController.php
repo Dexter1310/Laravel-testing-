@@ -15,13 +15,15 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
+
         $products = DB::table('products')
-            ->select('products.*', 'users.name as user_name','images.name as image_name','images.path as image_path','images.featured as feature' )
+            ->select('products.*', 'users.name as user_name','images.name as image_name','images.path as image_path','images.featured as featured ' )
             ->leftJoin('images', 'images.imageable_id', '=', 'products.id')
-            ->where('featured', 1)
-            ->join('users', 'users.id', '=', 'products.user_id')
+            ->where('featured', 1)->orWhere('featured', null)
+            ->join('users', 'users.id','=','products.user_id')
             ->orderBy('products.created_at', 'asc')
-            ->paginate(2);
+            ->paginate(3);
+
 
         return view('products.index', ['products' => $products]);
     }
