@@ -84,6 +84,7 @@ add language example:
 * php artisan lang:add fr
 * php artisan lang:publish
 * in the blade example for interpret   {{__('Login')}}
+* tutorial : https://www.youtube.com/watch?v=VYTy0v8pUGo
 
 # Routes
 * php artisan route:list
@@ -97,3 +98,6 @@ add language example:
 
 ## migrate
 * php artisan migrate
+
+## run serve
+php artisan serve

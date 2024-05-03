@@ -94,7 +94,7 @@ class ImagesController extends Controller
     {
         $idImage= $request->get('id');
         $image= Images::findOrFail($idImage);
-//        $idProduct= $image->imageable_id;
+
 
         if(Storage::disk('public')->exists($image->path)){ //if exists file in route storage/public/namefile
             $patch=Storage::disk('public')->delete($image->path); //recover path
